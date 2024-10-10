@@ -1,15 +1,15 @@
 @tool
 class_name MyPluginSettings extends RefCounted
 
-const PluginPrefixName: String = "my_plugin" ## The folder name
-const GitRepositoryName: String = "my-plugin"
+const PluginPrefixName: String = "ninetailsrabbit.fsm"
+const GitRepositoryName: String = "node-finite-state-machine"
 
 static var PluginName: String = "MyPlugin"
 static var PluginProjectName: String = ProjectSettings.get_setting("application/config/name")
 static var PluginBasePath: String = "res://addons/%s" % PluginPrefixName
 static var PluginLocalConfigFilePath = "%s/plugin.cfg" % PluginBasePath
 static var PluginSettingsBasePath: String = "%s/config/%s" % [PluginProjectName, PluginPrefixName]
-static var RemoteReleasesUrl = "https://api.github.com/repos/indie-pipeline/%s/releases" % GitRepositoryName
+static var RemoteReleasesUrl = "https://api.github.com/repos/ninetailsrabbit/%s/releases" % GitRepositoryName
 static var PluginTemporaryDirectoryPath = OS.get_user_data_dir() + "/" + PluginPrefixName
 static var PluginTemporaryReleaseUpdateDirectoryPath = "%s/update" % PluginTemporaryDirectoryPath
 static var PluginTemporaryReleaseFilePath = "%s/%s.zip" % [PluginTemporaryDirectoryPath, PluginPrefixName]

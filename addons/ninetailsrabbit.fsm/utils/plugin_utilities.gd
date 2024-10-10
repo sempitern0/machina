@@ -121,3 +121,7 @@ static func remove_files_recursive(path: String, regex: RegEx = null) -> void:
 		directory.remove(path)
 	else:
 		push_error("PluginUtilities->remove_recursive: An error %s happened open directory: %s " % [DirAccess.get_open_error(), path])
+
+
+static func case_insensitive_comparison(one: String, two: String) -> bool:
+	return one.strip_edges().to_lower() == two.strip_edges().to_lower()
