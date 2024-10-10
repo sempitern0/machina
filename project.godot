@@ -8,10 +8,6 @@
 
 config_version=5
 
-[Node finite state machine]
-
-config/ninetailsrabbit.fsm/update_notification_enabled=true
-
 [application]
 
 config/name="Node finite state machine"
