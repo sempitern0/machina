@@ -27,7 +27,7 @@
   - [Recipe to add a new finite state machine](#recipe-to-add-a-new-finite-state-machine)
   - [Change to another state](#change-to-another-state)
   - [Creating transitions between states](#creating-transitions-between-states)
-	- [Register a new transition](#register-a-new-transition)
+    - [Register a new transition](#register-a-new-transition)
 - [🔒 Lock or Unlock](#-lock-or-unlock)
 
 ---
@@ -35,7 +35,7 @@
 # 📦 Installation
 
 1. [Download Latest Release](https://github.com/ninetailsrabbit/node-finite-state-machine/releases/latest)
-2. Unpack the `addons/indiepipeline.fsm` folder into your `/addons` folder within the Godot project
+2. Unpack the `addons/ninetailsrabbit.fsm` folder into your `/addons` folder within the Godot project
 3. Enable this addon within the Godot settings: `Project > Project Settings > Plugins`
 
 To better understand what branch to choose from for which Godot version, please refer to this table:
