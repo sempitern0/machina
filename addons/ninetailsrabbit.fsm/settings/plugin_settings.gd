@@ -4,7 +4,7 @@ class_name MyPluginSettings extends RefCounted
 const PluginPrefixName: String = "ninetailsrabbit.fsm"
 const GitRepositoryName: String = "node-finite-state-machine"
 
-static var PluginName: String = "MyPlugin"
+static var PluginName: String = "NodeFiniteStateMachine"
 static var PluginProjectName: String = ProjectSettings.get_setting("application/config/name")
 static var PluginBasePath: String = "res://addons/%s" % PluginPrefixName
 static var PluginLocalConfigFilePath = "%s/plugin.cfg" % PluginBasePath

@@ -119,7 +119,7 @@ func exit_state(state: MachineState, _next_state: MachineState):
 
 
 func current_state_is_by_name(state: String) -> bool:
-	return PluginUtilities.case_insensitive_comparison(current_state.name, state)
+	return current_state.name.strip_edges().to_lower() == state.strip_edges().to_lower()
 
 
 func current_state_is(state: MachineState) -> bool:
