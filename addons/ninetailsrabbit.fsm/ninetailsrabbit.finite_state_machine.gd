@@ -12,8 +12,8 @@ func _enter_tree() -> void:
 	if not DirAccess.dir_exists_absolute(MyPluginSettings.PluginTemporaryReleaseUpdateDirectoryPath):
 		DirAccess.make_dir_recursive_absolute(MyPluginSettings.PluginTemporaryReleaseUpdateDirectoryPath)
 	
-	add_custom_type("MachineState", "Node", preload("src/machine_state.gd"), preload("assets/state.png"))
-	add_custom_type("FiniteStateMachine", "Node", preload("src/finite-state-machine.gd"), preload("assets/fsm.png"))
+	add_custom_type("MachineState", "Node", preload("src/machine_state.gd"), preload("assets/state.svg"))
+	add_custom_type("FiniteStateMachine", "Node", preload("src/finite-state-machine.gd"), preload("assets/fsm.svg"))
 	
 	
 func _exit_tree() -> void:

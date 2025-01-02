@@ -1,6 +1,5 @@
 class_name FiniteStateMachine extends Node
 
-
 signal states_initialized(states: Dictionary)
 signal state_changed(from_state: MachineState, state: MachineState)
 signal state_change_failed(from: MachineState, to: MachineState)
@@ -31,16 +30,33 @@ func _ready():
 	states_initialized.emit(states)
 	
 
-func _unhandled_input(event):
+func _input(event: InputEvent):
 	current_state.handle_input(event)
 
 
-func _physics_process(delta):
+func _unhandled_input(event: InputEvent):
+	current_state.handle_unhandled_input(event)
+
+
+func _unhandled_key_input(event: InputEvent):
+	current_state.handle_key_input(event)
+
+
+func _physics_process(delta: float):
 	current_state.physics_update(delta)
 
 
-func _process(delta):
+func _process(delta: float):
 	current_state.update(delta)
+
+
+## Alternative syntax to change state
+func travel(next_state: Variant, parameters: Dictionary = {}) -> void:
+	change_state_to(next_state, parameters)
+
+## Alternative syntax to change state
+func travel_to(next_state: Variant, parameters: Dictionary = {}) -> void:
+	change_state_to(next_state, parameters)
 
 
 func change_state_to(next_state: Variant, parameters: Dictionary = {}):
@@ -84,12 +100,12 @@ func run_transition(from: MachineState, to: MachineState, parameters: Dictionary
 	if not transitions.has(transition_name):
 		transitions[transition_name] = NeutralMachineTransition.new()
 	
-	var transition := transitions[transition_name] as MachineTransition
+	var transition: MachineTransition = transitions[transition_name] as MachineTransition
 	transition.from_state = from
 	transition.to_state = to
 	transition.parameters = parameters
 	
-	if transition.should_transition():		
+	if transition.should_transition():
 		transition.on_transition()
 		state_changed.emit(from, to)
 		
@@ -142,9 +158,28 @@ func current_state_is_not(_states: Array = []) -> bool:
 	)
 	
 
-func last_state() -> MachineState:
-	return states_stack.back() if states_stack.size() > 0 else null
+func old_state() -> MachineState:
+	return null if states_stack.is_empty() else states_stack.front()
 
+
+func next_to_old_state() -> MachineState:
+	return state_from_stack_on_position(1)
+
+
+func last_state() -> MachineState:
+	return null if states_stack.is_empty() else states_stack.back()
+
+
+func next_to_last_state() -> MachineState:
+	return state_from_stack_on_position(maxi(1, states_stack.size() - 2))
+
+
+func state_from_stack_on_position(position: int) -> MachineState:
+	if states_stack.is_empty() or position < 0 or position >= states_stack.size():
+		return null
+	
+	return states_stack[position]
+	
 
 func _build_transition_name(from: MachineState, to: MachineState) -> String:
 	var transition_name: String = "%sTo%sTransition" % [from.name.strip_edges(), to.name.strip_edges()]
@@ -171,10 +206,12 @@ func push_state_to_stack(state: MachineState) -> void:
 
 func lock_state_machine():
 	process_mode =  ProcessMode.PROCESS_MODE_DISABLED
+	locked = true
 
 	
 func unlock_state_machine():
-		process_mode =  ProcessMode.PROCESS_MODE_INHERIT
+	process_mode =  ProcessMode.PROCESS_MODE_INHERIT
+	locked = false
 
 
 func _prepare_states(node: Node = self):

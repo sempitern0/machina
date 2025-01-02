@@ -20,6 +20,14 @@ func exit(_next_state: MachineState) -> void:
 
 func handle_input(_event: InputEvent):
 	pass
+	
+
+func handle_unhandled_input(_event: InputEvent):
+	pass
+	
+
+func handle_key_input(_event: InputEvent):
+	pass
 
 
 func physics_update(_delta: float):
