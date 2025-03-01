@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4i7lvt2rd22i"
-path="res://.godot/imported/state.svg-5191574d8714ca40885f37564da8cf9b.ctex"
+uid="uid://c1j32xyrqeyqk"
+path="res://.godot/imported/state.svg-b5fe6a4aee2d0cd1b9dd91a04d402101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ninetailsrabbit.fsm/assets/state.svg"
-dest_files=["res://.godot/imported/state.svg-5191574d8714ca40885f37564da8cf9b.ctex"]
+source_file="res://addons/ninetailsrabbit.finite_state_machine/icons/state.svg"
+dest_files=["res://.godot/imported/state.svg-b5fe6a4aee2d0cd1b9dd91a04d402101.ctex"]
 
 [params]
 

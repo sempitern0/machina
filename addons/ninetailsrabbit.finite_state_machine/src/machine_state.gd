@@ -1,9 +1,9 @@
-class_name MachineState extends Node
+class_name IndieBlueprintMachineState extends Node
 
 signal entered
-signal finished(next_state: MachineState)
+signal finished(next_state: IndieBlueprintMachineState)
 
-var FSM: FiniteStateMachine
+var FSM: IndieBlueprintFiniteStateMachine
 
 
 func ready() -> void:
@@ -14,7 +14,7 @@ func enter() -> void:
 	pass
 	
 
-func exit(_next_state: MachineState) -> void:
+func exit(_next_state: IndieBlueprintMachineState) -> void:
 	pass
 	
 

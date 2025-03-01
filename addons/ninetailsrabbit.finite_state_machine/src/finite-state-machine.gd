@@ -1,26 +1,26 @@
-class_name FiniteStateMachine extends Node
+class_name IndieBlueprintFiniteStateMachine extends Node
 
 signal states_initialized(states: Dictionary)
-signal state_changed(from_state: MachineState, state: MachineState)
-signal state_change_failed(from: MachineState, to: MachineState)
-signal stack_pushed(new_state: MachineState, stack: Array[MachineState])
-signal stack_flushed(stack: Array[MachineState])
+signal state_changed(from_state: IndieBlueprintMachineState, state: IndieBlueprintMachineState)
+signal state_change_failed(from: IndieBlueprintMachineState, to: IndieBlueprintMachineState)
+signal stack_pushed(new_state: IndieBlueprintMachineState, stack: Array[IndieBlueprintMachineState])
+signal stack_flushed(stack: Array[IndieBlueprintMachineState])
 
-@export var current_state: MachineState
+@export var current_state: IndieBlueprintMachineState
 @export var enable_stack: bool = true
 @export var stack_capacity: int = 3
 @export var flush_stack_when_reach_capacity: bool = false
 
 var states: Dictionary = {}
 var transitions: Dictionary = {}
-var states_stack: Array[MachineState] = []
+var states_stack: Array[IndieBlueprintMachineState] = []
 
 var is_transitioning: bool = false
 var locked: bool = false
 
 
 func _ready():
-	assert(current_state is MachineState, "FiniteStateMachine: This Finite state machine does not have an initial state defined")
+	assert(current_state is IndieBlueprintMachineState, "IndieBlueprintFiniteStateMachine: This Finite state machine does not have an initial state defined")
 
 	state_changed.connect(on_state_changed)
 	state_change_failed.connect(on_state_change_failed)
@@ -71,7 +71,7 @@ func change_state_to(next_state: Variant, parameters: Dictionary = {}):
 			if states.has(state_name):
 				run_transition(current_state, states[state_name], parameters)
 			else:
-				push_error("FiniteStateMachine: The change of state cannot be done because %s does not exist in this Finite State Machine" % state_name)
+				push_error("IndieBlueprintFiniteStateMachine: The change of state cannot be done because %s does not exist in this Finite State Machine" % state_name)
 		
 		elif typeof(next_state) == TYPE_STRING:
 			if current_state_is_by_name(next_state):
@@ -80,19 +80,19 @@ func change_state_to(next_state: Variant, parameters: Dictionary = {}):
 			if states.has(next_state):
 				run_transition(current_state, states[next_state], parameters)
 			else:
-				push_error("FiniteStateMachine: The change of state cannot be done because %s does not exist in this Finite State Machine" % next_state)
+				push_error("IndieBlueprintFiniteStateMachine: The change of state cannot be done because %s does not exist in this Finite State Machine" % next_state)
 		
-		elif next_state is MachineState:
+		elif next_state is IndieBlueprintMachineState:
 			if current_state_is(next_state):
 				return
 				
 			if states.values().has(next_state):
 				run_transition(current_state, next_state, parameters)
 			else:
-				push_error("FiniteStateMachine: The change of state cannot be done because %s does not exist in this Finite State Machine" % next_state.name)
+				push_error("IndieBlueprintFiniteStateMachine: The change of state cannot be done because %s does not exist in this Finite State Machine" % next_state.name)
 		
 		
-func run_transition(from: MachineState, to: MachineState, parameters: Dictionary = {}):
+func run_transition(from: IndieBlueprintMachineState, to: IndieBlueprintMachineState, parameters: Dictionary = {}):
 	is_transitioning = true
 
 	var transition_name = _build_transition_name(from, to)
@@ -100,7 +100,7 @@ func run_transition(from: MachineState, to: MachineState, parameters: Dictionary
 	if not transitions.has(transition_name):
 		transitions[transition_name] = NeutralMachineTransition.new()
 	
-	var transition: MachineTransition = transitions[transition_name] as MachineTransition
+	var transition: IndieBlueprintMachineTransition = transitions[transition_name] as IndieBlueprintMachineTransition
 	transition.from_state = from
 	transition.to_state = to
 	transition.parameters = parameters
@@ -114,22 +114,22 @@ func run_transition(from: MachineState, to: MachineState, parameters: Dictionary
 	state_change_failed.emit(from, to)
 
 ## Example register_transition(WalkToRun.new())
-func register_transition(transition: MachineTransition):
+func register_transition(transition: IndieBlueprintMachineTransition):
 	transitions[transition.get_script().get_global_name()] = transition
 
 
-func register_transitions(new_transitions: Array[MachineTransition]):
+func register_transitions(new_transitions: Array[IndieBlueprintMachineTransition]):
 	for transition in new_transitions:
 		register_transition(transition)
 	
 
-func enter_state(state: MachineState):
+func enter_state(state: IndieBlueprintMachineState):
 	is_transitioning = false
 	state.entered.emit()
 	state.enter()
 		
 
-func exit_state(state: MachineState, _next_state: MachineState):
+func exit_state(state: IndieBlueprintMachineState, _next_state: IndieBlueprintMachineState):
 	state.finished.emit(_next_state)
 	state.exit(_next_state)
 
@@ -138,7 +138,7 @@ func current_state_is_by_name(state: String) -> bool:
 	return current_state.name.strip_edges().to_lower() == state.strip_edges().to_lower()
 
 
-func current_state_is(state: MachineState) -> bool:
+func current_state_is(state: IndieBlueprintMachineState) -> bool:
 	return current_state_is_by_name(state.name)
 
 
@@ -151,37 +151,37 @@ func current_state_is_not(_states: Array = []) -> bool:
 		if typeof(state) == TYPE_STRING:
 			return current_state_is_by_name(state)
 		
-		if state is MachineState:
+		if state is IndieBlueprintMachineState:
 			return current_state_is(state)
 		
 		return false
 	)
 	
 
-func old_state() -> MachineState:
+func old_state() -> IndieBlueprintMachineState:
 	return null if states_stack.is_empty() else states_stack.front()
 
 
-func next_to_old_state() -> MachineState:
+func next_to_old_state() -> IndieBlueprintMachineState:
 	return state_from_stack_on_position(1)
 
 
-func last_state() -> MachineState:
+func last_state() -> IndieBlueprintMachineState:
 	return null if states_stack.is_empty() else states_stack.back()
 
 
-func next_to_last_state() -> MachineState:
+func next_to_last_state() -> IndieBlueprintMachineState:
 	return state_from_stack_on_position(maxi(1, states_stack.size() - 2))
 
 
-func state_from_stack_on_position(position: int) -> MachineState:
+func state_from_stack_on_position(position: int) -> IndieBlueprintMachineState:
 	if states_stack.is_empty() or position < 0 or position >= states_stack.size():
 		return null
 	
 	return states_stack[position]
 	
 
-func _build_transition_name(from: MachineState, to: MachineState) -> String:
+func _build_transition_name(from: IndieBlueprintMachineState, to: IndieBlueprintMachineState) -> String:
 	var transition_name: String = "%sTo%sTransition" % [from.name.strip_edges(), to.name.strip_edges()]
 	
 	if not transitions.has(transition_name):
@@ -190,7 +190,7 @@ func _build_transition_name(from: MachineState, to: MachineState) -> String:
 	return transition_name
 	
 
-func push_state_to_stack(state: MachineState) -> void:
+func push_state_to_stack(state: IndieBlueprintMachineState) -> void:
 	if enable_stack and stack_capacity > 0:
 		if states_stack.size() >= stack_capacity:
 			if flush_stack_when_reach_capacity:
@@ -216,7 +216,7 @@ func unlock_state_machine():
 
 func _prepare_states(node: Node = self):
 	for child in node.get_children(true):
-		if child is MachineState:
+		if child is IndieBlueprintMachineState:
 			
 			_add_state_to_dictionary(child)
 		else:
@@ -224,14 +224,14 @@ func _prepare_states(node: Node = self):
 				_prepare_states(child)
 
 
-func _add_state_to_dictionary(state: MachineState):
+func _add_state_to_dictionary(state: IndieBlueprintMachineState):
 	if state.is_inside_tree():
 		states[state.name] = get_node(state.get_path())
 		state.FSM = self
 		state.ready()
 
 
-func on_state_changed(from: MachineState, to: MachineState):
+func on_state_changed(from: IndieBlueprintMachineState, to: IndieBlueprintMachineState):
 	push_state_to_stack(from)
 	exit_state(from, to)
 	enter_state(to)
@@ -239,5 +239,5 @@ func on_state_changed(from: MachineState, to: MachineState):
 	current_state = to
 
 
-func on_state_change_failed(_from: MachineState, _to: MachineState):
+func on_state_change_failed(_from: IndieBlueprintMachineState, _to: IndieBlueprintMachineState):
 	is_transitioning = false

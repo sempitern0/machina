@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://debwmuixxn1c4"
-path="res://.godot/imported/fsm.svg-24052a4f6843d2514232f36571003bc1.ctex"
+uid="uid://dfonq40e7qxcp"
+path="res://.godot/imported/fsm.svg-84d9f5b9c6971e643cbf5bb67e78d22d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ninetailsrabbit.fsm/assets/fsm.svg"
-dest_files=["res://.godot/imported/fsm.svg-24052a4f6843d2514232f36571003bc1.ctex"]
+source_file="res://addons/ninetailsrabbit.finite_state_machine/icons/fsm.svg"
+dest_files=["res://.godot/imported/fsm.svg-84d9f5b9c6971e643cbf5bb67e78d22d.ctex"]
 
 [params]
 
