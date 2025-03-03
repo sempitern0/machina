@@ -8,5 +8,5 @@ func _enter_tree() -> void:
 	
 	
 func _exit_tree() -> void:
-	remove_custom_type("MachineState")
-	remove_custom_type("FiniteStateMachine")
+	remove_custom_type("IndieBlueprintMachineState")
+	remove_custom_type("IndieBlueprintFiniteStateMachine")

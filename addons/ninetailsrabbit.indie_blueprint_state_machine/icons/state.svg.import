@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1j32xyrqeyqk"
-path="res://.godot/imported/state.svg-b5fe6a4aee2d0cd1b9dd91a04d402101.ctex"
+path="res://.godot/imported/state.svg-8757a8547e00a03a3b071a174d8f61d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ninetailsrabbit.finite_state_machine/icons/state.svg"
-dest_files=["res://.godot/imported/state.svg-b5fe6a4aee2d0cd1b9dd91a04d402101.ctex"]
+source_file="res://addons/ninetailsrabbit.indie_blueprint_state_machine/icons/state.svg"
+dest_files=["res://.godot/imported/state.svg-8757a8547e00a03a3b071a174d8f61d9.ctex"]
 
 [params]
 

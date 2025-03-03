@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfonq40e7qxcp"
-path="res://.godot/imported/fsm.svg-84d9f5b9c6971e643cbf5bb67e78d22d.ctex"
+path="res://.godot/imported/fsm.svg-cc0a1a1138a486eafbe08f6beb116708.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ninetailsrabbit.finite_state_machine/icons/fsm.svg"
-dest_files=["res://.godot/imported/fsm.svg-84d9f5b9c6971e643cbf5bb67e78d22d.ctex"]
+source_file="res://addons/ninetailsrabbit.indie_blueprint_state_machine/icons/fsm.svg"
+dest_files=["res://.godot/imported/fsm.svg-cc0a1a1138a486eafbe08f6beb116708.ctex"]
 
 [params]
 

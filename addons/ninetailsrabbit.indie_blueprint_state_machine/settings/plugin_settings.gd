@@ -1,7 +1,7 @@
 @tool
-class_name MyPluginSettings extends RefCounted
+class_name IndieBlueprintStateMachineSettings extends RefCounted
 
-const PluginPrefixName: String = "ninetailsrabbit.finite_state_machine"
+const PluginPrefixName: String = "ninetailsrabbit.indie_blueprint_state_machine"
 const GitRepositoryName: String = "indie-blueprint-state-machine"
 
 static var PluginName: String = "IndieBlueprintFiniteStateMachine"

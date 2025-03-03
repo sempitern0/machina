@@ -14,7 +14,7 @@ config/ninetailsrabbit.fsm/update_notification_enabled=true
 
 [application]
 
-config/name="Node finite state machine"
+config/name="Indie Blueprint State Machine"
 config/description="Finite state machines (FSMs) empower you to create intricate behaviors in a modular way. Each state can be defined independently, allowing for data sharing, state transitions, and more"
 config/version="1.0.5"
 config/features=PackedStringArray("4.3", "GL Compatibility")
@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ninetailsrabbit.fsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/ninetailsrabbit.indie_blueprint_state_machine/plugin.cfg")
 
 [rendering]
 
