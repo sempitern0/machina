@@ -27,7 +27,7 @@
   - [Recipe to add a new finite state machine](#recipe-to-add-a-new-finite-state-machine)
   - [Change to another state](#change-to-another-state)
   - [Creating transitions between states](#creating-transitions-between-states)
-    - [Register a new transition](#register-a-new-transition)
+	- [Register a new transition](#register-a-new-transition)
 - [🔒 Lock or Unlock](#-lock-or-unlock)
 
 ---
@@ -219,10 +219,13 @@ func on_transition():
 
 ### Register a new transition
 
-For the machine to be aware of them, **these transitions need to be recorded**. The transition class needs to have the name in the form of `{FromState}To{NewState}Transition`.
+For the state machine to be aware of them, **these transitions need to be recorded**. You can register transitions simple as passing the state classes and the transition instantiated:
+```swift
+## state_machine.register_transition(FROM_STATE, TO_STATE, TRANSITION)
 
-**If you need to apply a transition every time** you change to a specific state you can use the word `Any`, `AnyTo{NewState}Transition`
+state_machine.register_transition(UnitIdle, UnitMove, UnitIdleToUnitMoveTransition.new())
 
+```
 This is how it is done:
 
 ```swift
@@ -247,13 +250,8 @@ class_name FirstPersonController extends CharacterBody3D
 func _ready() -> void:
 	// ...
 
-	finite_state_machine.register_transition(WalkToRunTransition.new())
-	// Or you can register multiple transitions at once
-	finite_state_machine.register_transitions([
-		WalkToRunTransition.new(),
-		RunToWalkTransition.new()
-		AnyToJumpTransition.new()
-	])
+	finite_state_machine.register_transition(Idle, Walk, WalkToRunTransition.new())
+
 
 ```
 

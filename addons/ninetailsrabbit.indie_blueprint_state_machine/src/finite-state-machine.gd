@@ -12,7 +12,7 @@ signal stack_flushed(stack: Array[IndieBlueprintMachineState])
 @export var flush_stack_when_reach_capacity: bool = false
 
 var states: Dictionary[String, Node] = {}
-var transitions: Dictionary[String, IndieBlueprintMachineTransition] = {}
+var transitions: Dictionary[Array, IndieBlueprintMachineTransition] = {}
 var states_stack: Array[IndieBlueprintMachineState] = []
 
 var is_transitioning: bool = false
@@ -96,13 +96,14 @@ func change_state_to(next_state: Variant, parameters: Dictionary = {}):
 		
 func run_transition(from: IndieBlueprintMachineState, to: IndieBlueprintMachineState, parameters: Dictionary = {}):
 	is_transitioning = true
-
-	var transition_name = _build_transition_name(from, to)
-
-	if not transitions.has(transition_name):
-		transitions[transition_name] = NeutralMachineTransition.new()
 	
-	var transition: IndieBlueprintMachineTransition = transitions[transition_name] as IndieBlueprintMachineTransition
+	var from_state = from.get_script()
+	var to_state = to.get_script()
+	
+	if not transitions.has([from_state, to_state]):
+		transitions[[from_state, to_state]] = NeutralMachineTransition.new()
+	
+	var transition: IndieBlueprintMachineTransition = transitions[[from_state, to_state]]
 	transition.from_state = from
 	transition.to_state = to
 	transition.parameters = parameters
@@ -116,14 +117,19 @@ func run_transition(from: IndieBlueprintMachineState, to: IndieBlueprintMachineS
 	state_change_failed.emit(from, to)
 
 ## Example register_transition(WalkToRun.new())
-func register_transition(transition: IndieBlueprintMachineTransition):
-	transitions[transition.get_script().get_global_name()] = transition
-
-
-func register_transitions(new_transitions: Array[IndieBlueprintMachineTransition]):
-	for transition in new_transitions:
-		register_transition(transition)
+func register_transition(
+	from: Variant, 
+	to: Variant, 
+	transition: IndieBlueprintMachineTransition
+):
+	var from_state: IndieBlueprintMachineState = from.new()
+	var to_state: IndieBlueprintMachineState = from.new()
 	
+	if from_state is IndieBlueprintMachineState and to_state is IndieBlueprintMachineState:
+		transitions[[from, to]] = transition
+	else:
+		push_error("IndieBlueprintFiniteStateMachine: The transition cannot be registered, one of the state parameters does not inherit from IndieBlueprintMachineState")
+
 
 func enter_state(state: IndieBlueprintMachineState):
 	is_transitioning = false
@@ -181,16 +187,7 @@ func state_from_stack_on_position(position: int) -> IndieBlueprintMachineState:
 		return null
 	
 	return states_stack[position]
-	
 
-func _build_transition_name(from: IndieBlueprintMachineState, to: IndieBlueprintMachineState) -> String:
-	var transition_name: String = "%sTo%sTransition" % [from.name.strip_edges(), to.name.strip_edges()]
-	
-	if not transitions.has(transition_name):
-		transition_name = "AnyTo%sTransition" % to.name.strip_edges()
-	
-	return transition_name
-	
 
 func push_state_to_stack(state: IndieBlueprintMachineState) -> void:
 	if enable_stack and stack_capacity > 0:
