@@ -1,15 +1,15 @@
 <div align="center">
 	<img src="icon.svg" alt="Logo" width="160" height="160">
 
-<h3 align="center">Indie Blueprint State Machine</h3>
+<h3 align="center">Machina</h3>
 
   <p align="center">
    Finite state machines (FSMs) empower you to create intricate behaviors in a modular way. Each state can be defined independently, allowing for data sharing, state transitions, and more
 	<br />
 	·
-	<a href="https://github.com/ninetailsrabbit/indie-blueprint-state-machine/issues/new?assignees=ninetailsrabbit&labels=%F0%9F%90%9B+bug&projects=&template=bug_report.md&title=">Report Bug</a>
+	<a href="https://github.com/sempitern0/machina/issues/new?assignees=sempitern0&labels=%F0%9F%90%9B+bug&projects=&template=bug_report.md&title=">Report Bug</a>
 	·
-	<a href="https://github.com/ninetailsrabbit/indie-blueprint-state-machine/issues/new?assignees=ninetailsrabbit&labels=%E2%AD%90+feature&projects=&template=feature_request.md&title=">Request Features</a>
+	<a href="https://github.com/sempitern0/machina/issues/new?assignees=sempitern0&labels=%E2%AD%90+feature&projects=&template=feature_request.md&title=">Request Features</a>
   </p>
 </div>
 
@@ -22,20 +22,20 @@
 - [Finite State Machine 🔁](#finite-state-machine-)
 - [Structure of a MachineState](#structure-of-a-machinestate)
 - [📚 Getting started](#-getting-started)
-  - [Accessible properties from FiniteStateMachine](#accessible-properties-from-finitestatemachine)
-  - [Signals available](#signals-available)
-  - [Recipe to add a new finite state machine](#recipe-to-add-a-new-finite-state-machine)
-  - [Change to another state](#change-to-another-state)
-  - [Creating transitions between states](#creating-transitions-between-states)
-	- [Register a new transition](#register-a-new-transition)
+	- [Accessible properties from FiniteStateMachine](#accessible-properties-from-finitestatemachine)
+	- [Signals available](#signals-available)
+	- [Recipe to add a new finite state machine](#recipe-to-add-a-new-finite-state-machine)
+	- [Change to another state](#change-to-another-state)
+	- [Creating transitions between states](#creating-transitions-between-states)
+		- [Register a new transition](#register-a-new-transition)
 - [🔒 Lock or Unlock](#-lock-or-unlock)
 
 ---
 
 # 📦 Installation
 
-1. [Download Latest Release](https://github.com/ninetailsrabbit/indie-blueprint-state-machine/releases/latest)
-2. Unpack the `addons/ninetailsrabbit.fsm` folder into your `/addons` folder within the Godot project
+1. [Download Latest Release](https://github.com/sempitern0/machina/releases/latest)
+2. Unpack the `addons/sempitern0.fsm` folder into your `/addons` folder within the Godot project
 3. Enable this addon within the Godot settings: `Project > Project Settings > Plugins`
 
 To better understand what branch to choose from for which Godot version, please refer to this table:

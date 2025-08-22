@@ -10,11 +10,11 @@ config_version=5
 
 [Node finite state machine]
 
-config/ninetailsrabbit.fsm/update_notification_enabled=true
+config/sempitern0.fsm/update_notification_enabled=true
 
 [application]
 
-config/name="Indie Blueprint State Machine"
+config/name="Machina"
 config/description="Finite state machines (FSMs) empower you to create intricate behaviors in a modular way. Each state can be defined independently, allowing for data sharing, state transitions, and more"
 config/version="1.1.2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ninetailsrabbit.indie_blueprint_state_machine/plugin.cfg")
+enabled=PackedStringArray("res://addons/machina/plugin.cfg")
 
 [rendering]
 

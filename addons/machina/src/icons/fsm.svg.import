@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1j32xyrqeyqk"
-path="res://.godot/imported/state.svg-8757a8547e00a03a3b071a174d8f61d9.ctex"
+uid="uid://dfonq40e7qxcp"
+path="res://.godot/imported/fsm.svg-e3d2802a4df95ea8d4b7b43f37fdbefc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ninetailsrabbit.indie_blueprint_state_machine/icons/state.svg"
-dest_files=["res://.godot/imported/state.svg-8757a8547e00a03a3b071a174d8f61d9.ctex"]
+source_file="res://addons/machina/src/icons/fsm.svg"
+dest_files=["res://.godot/imported/fsm.svg-e3d2802a4df95ea8d4b7b43f37fdbefc.ctex"]
 
 [params]
 
