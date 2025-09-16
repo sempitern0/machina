@@ -116,7 +116,7 @@ func run_transition(from: MachineState, to: MachineState, parameters: Dictionary
 	
 	state_change_failed.emit(from, to)
 
-## Example register_transition(WalkToRun.new())
+## Example register_transition(WalkState, RunState, WalkToRunTransition.new())
 func register_transition(
 	from: Variant, 
 	to: Variant, 
